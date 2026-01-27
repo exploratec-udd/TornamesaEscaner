@@ -27,7 +27,7 @@ El Tornamesa de escáner 3D de ExploraTec es una herramienta de licencia abierta
 
    Quien permite tener una fuente de poder para el dispositivo, al poder usar la fuente de mayor voltaje del motor para poder alimentar a la ESP 32.
 
- - #### Sensor Hall magnetico KY-003
+ - #### Sensor Hall magnético KY-003
 
     Para determinar donde se encuentra la rotación del motor y calibración
 
@@ -39,8 +39,8 @@ El Tornamesa de escáner 3D de ExploraTec es una herramienta de licencia abierta
  |![Módulo Shield](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Shield.jpg)|![A4988](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/A4988.jpg)|
  |Fuente de poder|Regulador de voltaje LM2596|
  |![Fuente de poder 9V](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Transformador_de_Corriente.jpg)|![lm2596 dc-dc hw 411 Step Down](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/LM2596_Regulador_Step_Down.jpg)|
- |Sensor Hall magnetico KY-003|
-
+ |Sensor Hall magnético KY-003|
+ |![Fuente de poder 9V](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Sensor_Hall.jpg)|
 ### Hardware:
 
 - #### Componentes Impresos del cuerpo de la mesa
@@ -51,17 +51,21 @@ El Tornamesa de escáner 3D de ExploraTec es una herramienta de licencia abierta
 
   Encargados de sostener los componentes impresos del Tornamesa
 
-- #### Iman de Neodimio circular 10x3mm
+- #### Imán de Neodimio circular 10x3mm
 
   Necesario para la calibración del dispositivo, es censado por el sensor Hall.  
 
-- #### Canicas de 10mm
-- 
-  Usadas para alivianar el roce y sostener la superficie de la mesa
+- #### Rodamiento NSK 6205 C3 ( 25mm x 52mm x 15mm )
+  
+  Usadas para alivianar el roce y sostener la base de giro
 
 - #### Canicas de 10mm
-- 
-  Usadas para alivianar el roce y sostener la superficie de la mesa
+  
+  Usadas para alivianar el roce y equilibrar la superficie de la mesa
+
+- #### Superficie circular (Mínimo 12 Cm)
+
+  Superficie de la mesa donde se colocan los objetos que se deseen escanear, material a elección del usuario.
 
   
 ### Software:
@@ -78,7 +82,31 @@ El Tornamesa de escáner 3D de ExploraTec es una herramienta de licencia abierta
  |:---:|:---:|
 |![image](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Arduino_IDE.png)|![image](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Navegadores.jpg)|
 
+## Vista explosionada:
+![image]()
+
 
 
 ## Instrucciones de uso:
 
+### Encendido
+
+Al encender el dispositivo este como primer paso iniciará su calibración, girará en sentido anti-horario para encontrar su punto de inicio:
+
+![GifInicio](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Calibracion.gif)
+
+### Conección y pagina web
+
+Por defecto, el nombre de la red que debes conectarte para controlar el tornamesa es "ExploraTec Plataforma de Escaner" la cual es una red que permite **hasta 1 usuario por sesion**. La contraseña por defecto es **"12345678"** para acceder a esta y si es accedida a través del telefono celular es posible que pregunte si deseas mantenerte en la red debido a que, al ser una red local, no posee conección al internet.
+|<!-- -->|<!-- -->|
+|:---:|:---:|
+|![image]()|![image]()|
+|![image]()|![image]()|
+
+Al estar dentro de la red local debes entrar a tu navegador y entrar a la pagina web de control. Por defecto el link de esta es el 192.168.4.1. Si no puedes entrar a esta, es posible que tu dispositivo te haya conectado a otra red en busca de una red coon internet.
+
+|<!-- -->|<!-- -->|
+|:---:|:---:|
+|![image]()|![image]()|
+
+### Control del dispositivo
