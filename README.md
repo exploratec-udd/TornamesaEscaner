@@ -10,7 +10,7 @@ El Tornamesa de escáner 3D de ExploraTec es una herramienta de licencia abierta
 
 - #### ESP-32 Dev kit
 
-  El cerebro de la herramienta, utilizado para controlar señales al motor, alojar la pagina web y crear la red local.
+  El cerebro de la herramienta, utilizado para controlar señales al motor, alojar la página web y crear la red local.
 
 - #### Motor Stepper Bipolar Kysan 1124090 Nema 17
 
@@ -76,7 +76,7 @@ El Tornamesa de escáner 3D de ExploraTec es una herramienta de licencia abierta
 
  - #### Navegador Web
 
-  El dispositivo al ser controlado por una pagina web local es necesario un navegador para utilizarlo.
+  El dispositivo al ser controlado por una página web local es necesario un navegador para utilizarlo.
 
  |Arduino IDE|Navegador Web|
  |:---:|:---:|
@@ -91,22 +91,32 @@ El Tornamesa de escáner 3D de ExploraTec es una herramienta de licencia abierta
 
 ### Encendido
 
-Al encender el dispositivo este como primer paso iniciará su calibración, girará en sentido anti-horario para encontrar su punto de inicio:
+Al encender el dispositivo este como primer paso iniciará su calibración, girará en sentido antihorario para encontrar su punto de inicio:
 
 ![GifInicio](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Calibracion.gif)
 
-### Conección y pagina web
+### Conección y página web
 
 Por defecto, el nombre de la red que debes conectarte para controlar el tornamesa es "ExploraTec Plataforma de Escaner" la cual es una red que permite **hasta 1 usuario por sesion**. La contraseña por defecto es **"12345678"** para acceder a esta y si es accedida a través del telefono celular es posible que pregunte si deseas mantenerte en la red debido a que, al ser una red local, no posee conección al internet.
 |<!-- -->|<!-- -->|
 |:---:|:---:|
-|![image]()|![image]()|
-|![image]()|![image]()|
+|![Red](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Coneccion_1.jpg)|![Coneccion](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Coneccion_2.jpg)|
+|![Clave](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Coneccion_3.jpg)|![Aceptar](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Coneccion_4.jpg)|
 
-Al estar dentro de la red local debes entrar a tu navegador y entrar a la pagina web de control. Por defecto el link de esta es el 192.168.4.1. Si no puedes entrar a esta, es posible que tu dispositivo te haya conectado a otra red en busca de una red coon internet.
+Al estar dentro de la red local debes entrar a tu navegador y entrar a la página web de control. Por defecto el link de esta es el 192.168.4.1. Si no puedes entrar a esta, es posible que tu dispositivo te haya conectado a otra red en busca de una red coon internet.
 
 |<!-- -->|<!-- -->|
 |:---:|:---:|
-|![image]()|![image]()|
+|![URL](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Pagina_1.jpg)|![página](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Pagina_2.jpg)|
 
 ### Control del dispositivo
+
+El Tornamesa de escaner 3D tiene 2 modos, los cuales son **giro por grados** y **giro por velocidad**, los cuales pueden ser seleccionados en el inicio de la página como los primeros botones. 
+
+![gif]()
+
+En el primer modo, la plataforma del tornamesa girará una revolución completa, avanzando una cantidad de grados determinada por el usuario, en intervalos de tiempo tambén seleccionados por el mismo. En cambio, en el segundo modo la plataforma girará indefinidamente a una velocidad designada por el usuario. Ha de mencionar que ningúna de las acciones mencionadas ocurrirá a ecepción de que el boton de inicio haya sido presionado.
+![gif]()
+Tras ser precionado el boton de inicio, todas las configuraciones (a ecepción de dirección, velocidad y giro en el modo de velocidad) serán bloqueadas y no se podrán utilizar hasta que el proceso termine o sea cancelado con el boton de parar. Todos los comandos asignados al apretar el boton de inicio pueden ser pausados con el boton de pausa.
+![gif]()
+
