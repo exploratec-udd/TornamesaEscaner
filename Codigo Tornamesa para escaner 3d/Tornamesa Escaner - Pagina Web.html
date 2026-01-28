@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-store">
+<title>Plataforma Escaner 3D</title>
+<style>
+html { font-family: monospace; text-align: center; }
+.row { display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
+.col { display: flex; flex-direction: column; gap: 5px; }
+.button { background: yellowgreen; border: none; color: white; padding: 10px 15px; font-size: 20px; border-radius: 6px; }
+.button2 { background: gray; }
+.hidden { display:none; }
+</style>
+</head>
+<body>
+<h1>ExploraTec</h1>
+<h2>Control Plataforma 3D</h2>
+
+<div class="row">
+<button id="btn1" class="button" onclick="togglePin(modeState,1);updateUI()">Grados</button>
+<button id="btn2" class="button button2" onclick="togglePin(modeState,2);updateUI()">Velocidad</button>
+</div>
+
+<div id="mode1" class="col ">
+<div class="row">
+<button id="btn16" class="button button2" onclick="togglePin(pinState,16)">5°</button>
+<button id="btn17" class="button button2" onclick="togglePin(pinState,17)">15°</button>
+<button id="btn18" class="button button2" onclick="togglePin(pinState,18)">30°</button>
+<button id="btn19" class="button button2" onclick="togglePin(pinState,19)">45°</button>
+</div>
+
+<h4>Segundos por paso</h4>
+
+<input type="range" min="1" max="10" value="30" list="tickmarks" id="DegreeDelay">
+<datalist id="tickmarks">
+<option value="1" label="1"></option>
+<option value="2" label="2"></option>
+<option value="3" label="3"></option>
+<option value="4" label="4"></option>
+<option value="5" label="5"></option>
+<option value="6" label="6"></option>
+<option value="7" label="7"></option>
+<option value="8" label="8"></option>
+<option value="9" label="9"></option>
+<option value="10" label="10"></option>
+</datalist>
+<span id="delayVal"></span>
+</div>
+
+<div id="mode2" class="col ">
+<button id="btn20" class="button button2" onclick="togglePin(pinState,20)">Girar</button>
+<input type="range" id="motorSpeed">
+<span id="speedVal"></span>
+</div>
+
+<div id="cbtn" class="col ">
+
+<div class="row">
+<button id="btn3" class="button button2" onclick="togglePin(clockState,3)"><--</button>
+<button id="btn4" class="button" onclick="togglePin(clockState,4)">--></button>
+</div>
+<h4>Estado de Control</h4>
+<div class="row">
+<button id="btn5" class="button button2" onclick="togglePin(playState,5)">▶︎</button>
+<button id="btn6" class="button button2" onclick="togglePin(playState,6)" disabled="" style="opacity: 0.5; pointer-events: none;">⏸</button>
+<button id="btn7" class="button button2" onclick="togglePin(playState,7)" disabled="" style="opacity: 0.5; pointer-events: none;">⏹</button>
+</div>
+
+</div>
+
+<script>
+const pinState   = {16:false,17:false,18:false,19:false,20:false};
+const clockState = {3:false,4:true};
+const playState  = {5:false, 6:false, 7:false}
+const modeState  = {1:true  ,2:false};
+
+function lockButtons(lock){
+  const buttons = document.querySelectorAll("button");
+  const sliders = document.querySelectorAll('input[type="range"]');
+
+  buttons.forEach(btn => {
+    const id = btn.id.replace("btn","");
+    if(id != "6" && id != "7" && id!="20"){
+      btn.disabled = lock;
+      btn.style.opacity = lock ? "0.5" : "1";
+      btn.style.pointerEvents = lock ? "none" : "auto";
+	  if(id == "3"&& modeState[2] || id == "4" && modeState[2]){
+	    btn.disabled = false;
+        btn.style.opacity = false ? "0.5" : "1";
+        btn.style.pointerEvents = false ? "none" : "auto";
+	  }
+    }
+  else{
+    btn.disabled = !lock;
+      btn.style.opacity = !lock ? "0.5" : "1";
+      btn.style.pointerEvents = !lock ? "none" : "auto";
+  
+  }
+  });
+
+  sliders.forEach(slider => {
+    if( modeState[2] != true){
+    slider.disabled = lock;
+    slider.style.opacity = lock ? "0.5" : "1";
+    }
+  });
+}
+
+function lockplay(lock) {
+  const btn = document.getElementById("btn5");
+
+  btn.disabled = lock;
+  btn.style.opacity = lock ? "0.5" : "1";
+  btn.style.pointerEvents = lock ? "none" : "auto";
+}
+
+
+function togglePin(State,pin){
+  for(let p in State){
+    if(p!=pin && State[p]){
+      State[p]=false;
+      updateButton(State,p);
+      fetch(`/${p}/off`);
+    }
+  }
+
+  State[pin]=!State[pin];
+  updateButton(State,pin);
+  fetch(`/${pin}/${State[pin]?'on':'off'}`);
+
+  if(pin == 5 && State[pin]){
+    lockButtons(true);
+  }
+  if((pin == 6) && State[pin]){
+    lockplay(false);
+  }
+
+  if((pin == 7) && State[pin]){
+    lockButtons(false);
+  }
+  
+}
+
+function updateButton(State,pin){
+  const b=document.getElementById("btn"+pin);
+  if(State[pin]) b.classList.remove("button2");
+  else b.classList.add("button2");
+}
+
+function updateUI(){
+
+  mode1.classList.toggle("hidden",!modeState[1]);
+  mode2.classList.toggle("hidden",!modeState[2]);
+  cbtn.classList.toggle("hidden",!(modeState[1]||modeState[2]));
+  
+}
+
+const speedSlider=document.getElementById("motorSpeed");
+const speedVal=document.getElementById("speedVal");
+
+const DegreeSlider=document.getElementById("DegreeDelay");
+const delayVal=document.getElementById("delayVal");
+
+speedSlider.oninput=()=>speedVal.innerText=speedSlider.value;
+speedSlider.onchange=()=>fetch(`/dslider/${speedSlider.value}`);
+
+DegreeSlider.oninput=()=>delayVal.innerText=DegreeSlider.value;
+DegreeSlider.onchange=()=>fetch(`/eslider/${DegreeSlider.value}`);
+
+setInterval(() => {
+  fetch("/state")
+    .then(r => r.json())
+    .then(d => {
+      if (d.refresh) {
+        loadState();
+        updateUI();
+        window.location.href = window.location.href.split('?')[0] + '?noCache=' + new Date().getTime();
+      }
+    });
+}, 500);
+
+function loadState(){
+  fetch("/state").then(r=>r.json()).then(d=>{
+    pinState[16]=d.b5;
+    pinState[17]=d.b15;
+    pinState[18]=d.b30;
+    pinState[19]=d.b45;
+    pinState[20]=d.go;
+
+    modeState[1]= d.deg;
+    modeState[2]= !d.deg;
+
+    clockState[3]=!d.dir;
+    clockState[4]= d.dir;
+
+    playState[5]=d.play;
+    playState[6]=d.pause;
+    playState[7]=d.stop;
+
+    speedSlider.value=d.speed;
+    speedVal.innerText=d.speed;
+
+    DegreeSlider.value=d.drdelay;
+    delayVal.innerText=d.drdelay;
+
+    for(let p in pinState) updateButton(pinState,p);
+    for(let p in modeState) updateButton(modeState,p);
+    for(let p in clockState) updateButton(clockState,p);
+    for(let p in playState) updateButton(playState,p);
+
+    if(playState[5] || playState[6]) lockButtons(true);
+    if(playState[6]) lockplay(false);
+     updateUI();
+  });
+}
+window.onload  = function() {
+  loadState();
+};
+</script>
+</body>
+</html>
