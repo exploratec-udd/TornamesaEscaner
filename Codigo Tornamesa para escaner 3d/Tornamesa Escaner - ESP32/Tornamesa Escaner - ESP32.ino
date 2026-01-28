@@ -1,7 +1,7 @@
 #include <WiFi.h>
 
 // ====== WIFI CONFIG ======
-const char* ssid = "ExoloraTec Plataforma de Escaner 3D";
+const char* ssid = "ExploraTec Plataforma de Escaner 3D";
 const char* password = "12345678";
 
 WiFiServer server(80);
@@ -99,7 +99,7 @@ void bstop(){
      MotorPos = NULL;
      calibration();
 
-     needRefresh = true;   // <<< NUEVO (OPCION 1)
+     needRefresh = true;  
   
 }
 
@@ -368,9 +368,10 @@ void setup() {
 // ====== LOOP ======
 void loop() {
    CurMicroseconds = int(millis());
-  // CONTROL MOTOR
+  
+  // ====== CONTROL DE MOTOR ======
   if(bplay && !bpause && (button5 || button15 || button30 || button45 || buttonGo)){
-    digitalWrite(EN_PIN, LOW);  // Enable driver
+    digitalWrite(EN_PIN, LOW); 
     if((MotorPos >=3200 || MotorPos <=-3200) && !buttonGo){
       bstop();
     }
@@ -407,13 +408,14 @@ void loop() {
 
   WiFiClient client = server.available();
   if(!client) return;
-
+  
+  // ====== iNTRERACCION CON PAGINA ======
   String header="";
   while(client.connected()){
     if(client.available()){
       char c=client.read();
       header+=c;
-
+      // ====== ACTUALIZAR PAGINA ======
       if(c=='\n'){
         if(header.indexOf("GET /state")>=0){
           String json="{";
@@ -442,7 +444,7 @@ void loop() {
           client.println(json);
           break;
         }
-
+       // ====== LEER PAGINA ======
        if(header.indexOf("GET /dslider/")>=0){
           ActualMicrosecondsDelay = header.substring(header.indexOf("/dslider/")+9).toInt();
           ActualMicrosecondsDelay = map(ActualMicrosecondsDelay, 0,100, MaxMicrosecondDelay,MinMicrosecondDelay);
