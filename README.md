@@ -80,10 +80,10 @@ El Tornamesa de escáner 3D de ExploraTec es una herramienta de licencia abierta
 
  |Arduino IDE|Navegador Web|
  |:---:|:---:|
-|![image](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Arduino_IDE.png)|![image](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Navegadores.jpg)|
+|![Arduino IDE](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Arduino_IDE.png)|![Navegadores Web](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Navegadores.jpg)|
 
 ## Vista explosionada:
-![image]()
+![Plano de vista Explosiva del tornamesa](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Plano_vista_explosiva.png)
 
 
 
@@ -113,10 +113,15 @@ Al estar dentro de la red local debes entrar a tu navegador y entrar a la págin
 
 El Tornamesa de escaner 3D tiene 2 modos, los cuales son **giro por grados** y **giro por velocidad**, los cuales pueden ser seleccionados en el inicio de la página como los primeros botones. 
 
-![gif]()
+  ![Modos](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Modos.gif)
 
 En el primer modo, la plataforma del tornamesa girará una revolución completa, avanzando una cantidad de grados determinada por el usuario, en intervalos de tiempo tambén seleccionados por el mismo. En cambio, en el segundo modo la plataforma girará indefinidamente a una velocidad designada por el usuario. Ha de mencionar que ningúna de las acciones mencionadas ocurrirá a ecepción de que el boton de inicio haya sido presionado.
-![gif]()
+
+![Tornamesa girando con zapatilla impresa en 3d](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Prueba_de_giro.gif)
+
 Tras ser precionado el boton de inicio, todas las configuraciones (a ecepción de dirección, velocidad y giro en el modo de velocidad) serán bloqueadas y no se podrán utilizar hasta que el proceso termine o sea cancelado con el boton de parar. Todos los comandos asignados al apretar el boton de inicio pueden ser pausados con el boton de pausa.
-![gif]()
+
+|Modo Grados|Modo Velocidad|
+|:---:|:---:|
+|![Modo Grados](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Modo%20grados.gif)|![Modo Giro](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Modo%20Giro.gif)|
 
