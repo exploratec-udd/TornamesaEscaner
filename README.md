@@ -125,3 +125,4 @@ Tras ser precionado el boton de inicio, todas las configuraciones (a ecepción d
 |:---:|:---:|
 |![Modo Grados](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Modo%20grados.gif)|![Modo Giro](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Modo%20Giro.gif)|
 
+>documentado por [Sofía Pérez Gutiérrez](https://github.com/ItsPeku) 2026
