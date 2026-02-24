@@ -40,7 +40,7 @@ El Tornamesa de escáner 3D de ExploraTec es una herramienta de licencia abierta
  |Fuente de poder|Regulador de voltaje LM2596|
  |![Fuente de poder 9V](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Transformador_de_Corriente.jpg)|![lm2596 dc-dc hw 411 Step Down](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/LM2596_Regulador_Step_Down.jpg)|
  |Sensor Hall magnético KY-003|
- |![Fuente de poder 9V](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Sensor_Hall.jpg)|
+ |![Hall magnético KY-003](https://github.com/exploratec-udd/TornamesaEscaner/blob/main/imagenes2/Hall.jpg)|
 ### Hardware:
 
 - #### Componentes Impresos del cuerpo de la mesa
